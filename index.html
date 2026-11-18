@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ban3mah Menu</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header class="header">
+
+<!--<h2 id="restaurantName">Ban3mah</h2>-->
+<div class="controls">
+
+<button onclick="toggleSidebar()" class="menu-btn">☰</button>
+
+<img src="https://ban3mah.com/wp-content/uploads/2023/12/%D8%A8%D8%A7%D9%86%D8%B9%D9%85%D9%87-2.png"
+     alt="logo"
+     width="80"
+     height="80"
+     class="logo"/>
+
+<button  onclick="openCartModal()" class="cart-btn">
+🛒 <span id="cartCount">0</span>
+</button>
+
+</div>
+
+</header>
+    <!--sidebar-->
+    <div>
+        <!-- Sidebar -->
+<div id="sidebar" class="sidebar hidden">
+
+<div class="sidebar-header">
+<!--<h2 id="restaurantName">Ban3mah</h2>-->
+<span class="close-btn" onclick="toggleSidebar()">×</span>
+</div>
+
+<div class="sidebar-body">
+<!--<button class="sidebar-btn" onclick="toggleLanguage()">
+🌐 <span id="langToggle">EN</span>
+</button>-->
+<button id="langToggle" onclick="toggleLanguage()">EN</button>
+
+<!-- Company Info -->
+<div id="companyInfo"></div>
+
+<hr>
+
+<!-- Branch Name -->
+<div id="branchName"></div>
+
+<hr>
+
+<!-- Branches Section -->
+<button class="sidebar-btn" onclick="openBranchesModal()">
+📍 Our Branches | فروعنا
+</button>
+
+<div style="margin:auto; width:100%; padding:10px; text-align:center;">
+
+    <h6 style="color:white; font-size:12px;">
+        متواجدين في التطبيقات
+    </h6>
+
+    <!-- Courier Icons in One Line -->
+    <div style="display:flex; justify-content:center; align-items:center; gap:15px; flex-wrap:wrap;">
+
+        <img alt="jahezapp" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwWTQ67w2LMErbup28NAC_TdXXAesS24h76Q&s" width="45" height="50"/>
+
+        <img alt="hungerstation" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-PDjviDyNEDMA9cKmkDAIA_ovef2NvCX2Mg&s" width="45" height="50"/>
+
+        <img alt="Keeta" src="http://ban3mah.com/images/keetalogo.png" width="45" height="50"/>
+
+        <img alt="Marsool" src="http://ban3mah.com/images/marsoollogo.png" width="45" height="50"/>
+
+        <img alt="ninja" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnsV-ZcPieRpA-t9nW8ZZgTES1EBaTgRGNQw&s" width="45" height="50"/>
+
+    </div>
+
+    <!-- App Download -->
+<div style="margin-top:20px;text-align:center;">
+
+<h4>Download our app</h4>
+
+<a onclick="window.open('https://play.google.com/store/apps/details?id=com.arqami.ban3mah&hl=ar-sa')">
+<img src="https://freepngimg.com/download/google/67017-play-google-icons-app-computer-store.png" alt="android" width="150" height="50"/>
+</a>
+
+<a  onclick="window.open('https://apps.apple.com/us/app/%D9%85%D8%B7%D8%A7%D8%B9%D9%85-%D8%A8%D8%A7%D9%86%D8%B9%D9%85%D8%A9/id1670615591?l=ar')">
+    <img  src="https://freepngimg.com/download/apple/58653-play-app-google-apple-store-free-download-png-hq.png" alt="apple" width="165" height="60" /> </a>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- Sidebar Overlay -->
+<div id="sidebarOverlay" class="overlay hidden"
+onclick="toggleSidebar()"></div>
+    </div>
+    
+    <!--load modal-->
+  <div id="itemModal" class="modal hidden" onclick="outsideModalClose(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-modal" onclick="closeItemModal()">×</span>
+        <div id="modalBody">    
+           
+        </div>
+        <div style="text-align:center;margin-top:15px;">
+
+<button onclick='addToCartFromModal()'
+style="
+background:#3ab9a4;
+color:white;
+border:none;
+padding:12px 25px;
+border-radius:10px;
+cursor:pointer;
+font-size:16px;
+">
+
+🛒 Add To Cart
+
+</button>
+
+</div>
+           <div id="optionRemark"
+style="
+background:#f9f9f9;
+padding:12px;
+border-radius:8px;
+margin-top:12px;
+font-size:14px;
+">
+No option selected
+</div>
+    </div>
+      
+</div>
+    
+    <div id="generalModal" class="modal hidden" onclick="outsideModalClose(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-modal" onclick="closeItemModal()">×</span>
+        <div id="allBody">    
+           
+        </div>
+       
+    </div>
+      
+</div>
+
+    
+    <div id="cartModal" class="modal hidden" onclick="closeCartModal(event)">
+
+<div class="modal-content" onclick="event.stopPropagation()">
+
+<h2 style="text-align:center;margin-bottom:15px;">
+🛒 My Cart
+</h2>
+
+<div id="cartBody"></div>
+
+<button onclick="closeCartModal()"
+style="width:100%;margin-top:15px;background:#333;color:white;padding:10px;border-radius:8px;">
+Close
+</button>
+
+</div>
+        
+    </div>
+    
+    <!--Loader-->
+  <div id="loader" class="loader hidden"></div>
+  <div id="coverheader" style="width: 100%;"></div>
+
+<!-- Categories -->
+<button class="sidebar-btn" onclick="searchMenu()">
+    🔍 Search Menu <input style="width: 100%;" type="text"
+id="searchInput"
+placeholder="search..."
+onkeyup="searchMenu()"/>
+</button>
+
+<nav id="groups2"></nav>
+
+<!-- Menu Items -->
+<main id="groups" class="menu">
+  
+</main>
+
+<!-- Floating  Buttons -->
+    <i class="whats-app fab fa-whatsapp">
+    <button  onclick="openCartModal()" class="cart-btn">
+🛒 <span id="cartCount">0</span>
+</button></i>
+   <a href='#' class="stt " title="scroll to top"></a>
+
+    <footer class="custom-footer">
+    <div class="footer-content">
+        <span>© 2026 All Rights Reserved</span>
+        <a href="https://www.linkedin.com/in/abuyounis/" target="_blank">
+            Wael A A
+        </a>
+    </div>
+</footer>
+<script src="js/app.js"></script>
+
+</body>
+</html>
